@@ -1,0 +1,16 @@
+{
+  "name": "panel",
+  "repo": "jaycetde/panel",
+  "description": "ui component similar to jQuery-mobile panel",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "panel.css"
+  ]
+}
