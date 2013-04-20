@@ -1,7 +1,7 @@
 {
-  "name": "panel",
-  "repo": "JayceTDE/panel",
-  "description": "ui component similar to jQuery-mobile panel",
+  "name": "side-panel",
+  "repo": "JayceTDE/side-panel",
+  "description": "Basic side panel component",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {

@@ -9,22 +9,16 @@
 <style>
 
 html, body {
-	margin: 0;
-	padding: 0;
-}
-
-div:not(#content) {
-	padding:30px;
-}
-
-div:nth-child(even) {
-	color: black;
-	background: #CCC;
+  margin: 0;
+  padding: 5px 10px;
 }
 
 #panel {
-	background: grey;
-	color: white;
+  padding: 20px 5px;
+  background: #CCC;
+  color: black;
+  border-left:1px solid #999;
+  box-shadow: 0 0 10px #999;
 }
 
 </style>
@@ -32,64 +26,74 @@ div:nth-child(even) {
 </head>
 <body>
 
-<div id="content">
-
-	<div>
-		Right now the side panel is basic and only works with manual commands: <button id="showPanel">Show</button> <button id="hidePanel">Hide</button>
-	</div>
-
-	<div>
-		Attach a few listeners to show the panel when hovering: <button id="hover">Attach Hover</button>
-	</div>
-
+<h3>Basic Side-panel</h3>
 <div>
-	here is some content. I need it to extend more than one line and use some good old fashioned line-wrapping :) That is why I am trying to write more of a message right here.
-</div>
 
-<div>
-	another box
-</div>
+  <pre>
 
-<div>
-	here we go again
+var sidePanel = require('side-panel')
+  , panelEl = document.querySelector('#panel')
+  , panel = sidePanel(panelEl, { position: 'right' })
+;
+
+  </pre>
+
+  <p>
+  The basic side panel has two main functions: <button id="showPanel">.show()</button> and <button id="hidePanel">.hide()</button>
+  </p>
+
 </div>
 
+<h3>Add functionality</h3>
 <div>
-	copy and paste
-</div>
 
-<div>
-	copy and paste
-</div>
+  <p>
+  A more useful (in my opinion) setup would be to add several listeners to make the side panel more user friendly: <button id="hover">Add listeners</button>
+  </p>
 
-<div>
-	copy and paste
-</div>
-<div>
-	copy and paste
-</div>
-<div>
-	copy and paste
-</div>
-<div>
-	copy and paste
-</div>
+  <pre>
+
+var events = require('component-event');
+
+panel.activated = false;
+
+events.bind(panel.el, 'mouseover', function () {
+  panel.show();
+});
+events.bind(panel.el, 'mouseout', function () {
+  if (!panel.activated) {
+    panel.hide();
+  }
+});
+events.bind(panel.el, 'click', function (e) {
+  e.panelClick = true;
+  panel.activated = true;
+});
+
+events.bind(document.body, 'click', function (e) {
+  if (!e.panelClick && panel.activated) {
+    panel.activated = false;
+    panel.hide();
+  }
+});
+
+  </pre>
 
 </div>
 
 <div id="panel">
-	This is my panel
+  Panel content goes right here :)
 </div>
 
 <script src="build/build.js"></script>
 <script>
 
-var panel = require('panel')
-	, events = require('component-event')
-	, added = false
+var sidePanel = require('side-panel')
+  , events = require('component-event')
+  , added = false
 ;
 
-var p = panel(document.querySelector('#panel'), { position: 'right' });
+var panel = sidePanel(document.querySelector('#panel'), { position: 'right' });
 
 function addFunctionality() {
 
@@ -97,32 +101,32 @@ if (added) return;
 
 added = true;
 
-p.activated = false;
+panel.activated = false;
 
-events.bind(p.el, 'mouseover', function () {
-	p.show();
+events.bind(panel.el, 'mouseover', function () {
+  panel.show();
 });
-events.bind(p.el, 'mouseout', function () {
-	if (!p.activated) {
-		p.hide();
-	}
+events.bind(panel.el, 'mouseout', function () {
+  if (!panel.activated) {
+    panel.hide();
+  }
 });
-events.bind(p.el, 'click', function (e) {
-	e.panelClick = true;
-	p.activated = true;
+events.bind(panel.el, 'click', function (e) {
+  e.panelClick = true;
+  panel.activated = true;
 });
 
 events.bind(document.body, 'click', function (e) {
-	if (!e.panelClick) {
-		p.activated = false;
-		p.hide();
-	}
+  if (!e.panelClick && panel.activated) {
+    panel.activated = false;
+    panel.hide();
+  }
 });
 
 }
 
-events.bind(document.querySelector('#showPanel'), 'click', p.show.bind(p));
-events.bind(document.querySelector('#hidePanel'), 'click', p.hide.bind(p));
+events.bind(document.querySelector('#showPanel'), 'click', panel.show.bind(panel));
+events.bind(document.querySelector('#hidePanel'), 'click', panel.hide.bind(panel));
 events.bind(document.querySelector('#hover'), 'click', addFunctionality);
 
 </script>
