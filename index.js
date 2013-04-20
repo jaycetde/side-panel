@@ -47,9 +47,9 @@ function SidePanel(el, options) {
 
 }
 
-Panel.prototype.__proto__ = Emitter.prototype;
+SidePanel.prototype.__proto__ = Emitter.prototype;
 
-Panel.prototype._getHideWidth = function () {
+SidePanel.prototype._getHideWidth = function () {
 
 	var bWidth = document.body.offsetWidth
 		, cWidth = Math.round(bWidth * this._options.widthPercentage)
@@ -59,7 +59,7 @@ Panel.prototype._getHideWidth = function () {
 
 };
 
-Panel.prototype._getHideOffset = function () {
+SidePanel.prototype._getHideOffset = function () {
 
 	var cWidth = this.el.offsetWidth;
 
@@ -67,7 +67,7 @@ Panel.prototype._getHideOffset = function () {
 
 };
 
-Panel.prototype.adjustPosition = function () {
+SidePanel.prototype.adjustPosition = function () {
 
 	if (!this.showing) {
 		this.fx.to(this.hideOffset);
@@ -77,7 +77,7 @@ Panel.prototype.adjustPosition = function () {
 
 };
 
-Panel.prototype.show = function () {
+SidePanel.prototype.show = function () {
 
 	this.showing = true;
 
@@ -87,7 +87,7 @@ Panel.prototype.show = function () {
 
 };
 
-Panel.prototype.hide = function () {
+SidePanel.prototype.hide = function () {
 
 	this.showing = false;
 
