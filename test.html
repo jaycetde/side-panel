@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Panel Demo</title>
+
+<link rel="stylesheet" href="build/build.css" />
+
+<style>
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+div:not(#content) {
+	padding:30px;
+}
+
+div:nth-child(even) {
+	color: black;
+	background: #CCC;
+}
+
+#panel {
+	background: grey;
+	color: white;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="content">
+
+	<div>
+		Right now the side panel is basic and only works with manual commands: <button id="showPanel">Show</button> <button id="hidePanel">Hide</button>
+	</div>
+
+	<div>
+		Attach a few listeners to show the panel when hovering: <button id="hover">Attach Hover</button>
+	</div>
+
+<div>
+	here is some content. I need it to extend more than one line and use some good old fashioned line-wrapping :) That is why I am trying to write more of a message right here.
+</div>
+
+<div>
+	another box
+</div>
+
+<div>
+	here we go again
+</div>
+
+<div>
+	copy and paste
+</div>
+
+<div>
+	copy and paste
+</div>
+
+<div>
+	copy and paste
+</div>
+<div>
+	copy and paste
+</div>
+<div>
+	copy and paste
+</div>
+<div>
+	copy and paste
+</div>
+
+</div>
+
+<div id="panel">
+	This is my panel
+</div>
+
+<script src="build/build.js"></script>
+<script>
+
+var panel = require('panel')
+	, events = require('component-event')
+	, added = false
+;
+
+var p = panel(document.querySelector('#panel'), { position: 'right' });
+
+function addFunctionality() {
+
+if (added) return;
+
+added = true;
+
+p.activated = false;
+
+events.bind(p.el, 'mouseover', function () {
+	p.show();
+});
+events.bind(p.el, 'mouseout', function () {
+	if (!p.activated) {
+		p.hide();
+	}
+});
+events.bind(p.el, 'click', function (e) {
+	e.panelClick = true;
+	p.activated = true;
+});
+
+events.bind(document.body, 'click', function (e) {
+	if (!e.panelClick) {
+		p.activated = false;
+		p.hide();
+	}
+});
+
+}
+
+events.bind(document.querySelector('#showPanel'), 'click', p.show.bind(p));
+events.bind(document.querySelector('#hidePanel'), 'click', p.hide.bind(p));
+events.bind(document.querySelector('#hover'), 'click', addFunctionality);
+
+</script>
+
+</body>
+</html>

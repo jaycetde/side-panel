@@ -5,7 +5,7 @@
 
 ## Installation
 
-    $ component install jaycetde/panel
+    $ component install JayceTDE/panel
 
 ## API
 
