@@ -1,10 +1,8 @@
 'use strict';
 
-var query = require('query')
-	, classes = require('classes')
+var classes = require('classes')
 	, Emitter = require('emitter')
 	, defaults = require('deeperDefaults')
-	, compStyle = require('computed-style')
 	, events = require('event')
 	, Fx = require('fx')
 ;
@@ -19,7 +17,7 @@ var defaultOptions = {
 	, animationDuration: 300
 };
 
-function Panel(el, options) {
+function SidePanel(el, options) {
 
 	var self = this;
 
@@ -100,5 +98,5 @@ Panel.prototype.hide = function () {
 };
 
 module.exports = function (el, options) {
-	return new Panel(el, options);
+	return new SidePanel(el, options);
 };

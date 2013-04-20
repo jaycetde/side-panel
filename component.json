@@ -3,13 +3,11 @@
   "repo": "JayceTDE/side-panel",
   "description": "Basic side panel component",
   "version": "0.0.1",
-  "keywords": [],
+  "keywords": ["ui", "panel", "side-panel"],
   "dependencies": {
-    "component/query": "*",
     "component/emitter": "*",
     "JayceTDE/deeperDefaults": "*",
 		"JayceTDE/fx": "*",
-    "jkroso/computed-style": "*",
     "component/event": "*",
     "component/classes": "*"
   },
