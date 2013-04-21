@@ -33,7 +33,7 @@ html, body {
 
 var sidePanel = require('side-panel')
   , panelEl = document.querySelector('#panel')
-  , panel = sidePanel(panelEl, { position: 'right' })
+  , panel = sidePanel(panelEl, { position: 'right', padBody: true })
 ;
 
   </pre>
@@ -93,7 +93,7 @@ var sidePanel = require('side-panel')
   , added = false
 ;
 
-var panel = sidePanel(document.querySelector('#panel'), { position: 'right' });
+var panel = sidePanel(document.querySelector('#panel'), { position: 'right', padBody: true });
 
 function addFunctionality() {
 

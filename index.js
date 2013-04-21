@@ -7,6 +7,10 @@ var classes = require('classes')
 	, Fx = require('fx')
 ;
 
+var capitalize = function (str) {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 var defaultOptions = {
 	classes: {
 		panel: 'side-panel'
@@ -15,6 +19,7 @@ var defaultOptions = {
 	, maxWidth: 50					// pixels
 	, position: 'left'
 	, animationDuration: 300
+	, padBody: false
 };
 
 function SidePanel(el, options) {
@@ -61,9 +66,15 @@ SidePanel.prototype._getHideWidth = function () {
 
 SidePanel.prototype._getHideOffset = function () {
 
-	var cWidth = this.el.offsetWidth;
+	var cWidth = this.el.offsetWidth
+		, hideWidth = this._getHideWidth()
+	;
 
-	this.hideOffset = (cWidth - this._getHideWidth()) * -1;
+	this.hideOffset = (cWidth - hideWidth) * -1;
+
+	if (this._options.padBody) {
+		document.body.style['padding' + capitalize(this._options.position)] = hideWidth + 'px';
+	}
 
 };
 
