@@ -31,9 +31,8 @@ function SidePanel(el, options) {
 	self.el = el;
 	self._options = defaults(options, defaultOptions);
 
-	self.fx = new Fx(self.el, self._options.position, {
-		duration: self._options.animationDuration
-	});
+	self.fx = new Fx(self.el);
+	self.fxPos = self.fx.prop(self._options.position);//, self._options.position, { duration: self._options.animationDuration });
 
 	classes(el).add(self._options.classes.panel);
 
@@ -41,7 +40,7 @@ function SidePanel(el, options) {
 
 	self._getHideOffset();
 
-	self.fx.set(self.hideOffset);
+	self.fxPos.set(self.hideOffset);
 
 	self.adjustPosition();
 
@@ -81,9 +80,9 @@ SidePanel.prototype._getHideOffset = function () {
 SidePanel.prototype.adjustPosition = function () {
 
 	if (!this.showing) {
-		this.fx.to(this.hideOffset);
+		this.fxPos.to(this.hideOffset);
 	} else {
-		this.fx.to(0);
+		this.fxPos.to(0);
 	}
 
 };
