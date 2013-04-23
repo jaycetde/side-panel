@@ -7,7 +7,7 @@
   "dependencies": {
     "component/emitter": "*",
     "JayceTDE/deeperDefaults": "*",
-		"JayceTDE/transition": "*",
+    "JayceTDE/transition": "*",
     "component/event": "*",
     "component/classes": "*"
   },
@@ -17,6 +17,6 @@
     "index.js"
   ],
   "styles": [
-    "panel.css"
+    "style.css"
   ]
 }
