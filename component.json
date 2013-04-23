@@ -7,7 +7,7 @@
   "dependencies": {
     "component/emitter": "*",
     "JayceTDE/deeperDefaults": "*",
-		"JayceTDE/fx": "*",
+		"JayceTDE/transition": "*",
     "component/event": "*",
     "component/classes": "*"
   },

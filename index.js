@@ -4,7 +4,7 @@ var classes = require('classes')
 	, Emitter = require('emitter')
 	, defaults = require('deeperDefaults')
 	, events = require('event')
-	, Fx = require('fx')
+	, Transition = require('transition')
 ;
 
 var capitalize = function (str) {
@@ -31,8 +31,8 @@ function SidePanel(el, options) {
 	self.el = el;
 	self._options = defaults(options, defaultOptions);
 
-	self.fx = new Fx(self.el);
-	self.fxPos = self.fx.prop(self._options.position);//, self._options.position, { duration: self._options.animationDuration });
+	self.transition = new Transition(self.el);
+	self.transitionPos = self.transition.prop(self._options.position);//, self._options.position, { duration: self._options.animationDuration });
 
 	classes(el).add(self._options.classes.panel);
 
@@ -40,7 +40,7 @@ function SidePanel(el, options) {
 
 	self._getHideOffset();
 
-	self.fxPos.set(self.hideOffset);
+	self.transitionPos.set(self.hideOffset);
 
 	self.adjustPosition();
 
@@ -80,9 +80,9 @@ SidePanel.prototype._getHideOffset = function () {
 SidePanel.prototype.adjustPosition = function () {
 
 	if (!this.showing) {
-		this.fxPos.to(this.hideOffset);
+		this.transitionPos.to(this.hideOffset);
 	} else {
-		this.fxPos.to(0);
+		this.transitionPos.to(0);
 	}
 
 };
