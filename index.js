@@ -4,7 +4,7 @@ var classes = require('classes')
 	, Emitter = require('emitter')
 	, defaults = require('deeperDefaults')
 	, events = require('event')
-	, Transition = require('transition')
+  , stylar = require('stylar')
 ;
 
 var capitalize = function (str) {
@@ -31,16 +31,18 @@ function SidePanel(el, options) {
 	self.el = el;
 	self._options = defaults(options, defaultOptions);
 
-	self.transition = new Transition(self.el);
-	self.transitionPos = self.transition.prop(self._options.position);//, self._options.position, { duration: self._options.animationDuration });
-
 	classes(el).add(self._options.classes.panel);
 
 	self.showing = false;
 
 	self._getHideOffset();
 
-	self.transitionPos.set(self.hideOffset);
+  stylar(el)
+    .set(self._options.position, self.hideOffset + 'px')
+    .set('transitionDuration', '300ms')
+    .set('transitionTimingFunction', 'ease')
+    .set('transitionProperty', self._options.position)
+  ;
 
 	self.adjustPosition();
 
@@ -78,12 +80,16 @@ SidePanel.prototype._getHideOffset = function () {
 };
 
 SidePanel.prototype.adjustPosition = function () {
+  
+  var pos = 0;
 
 	if (!this.showing) {
-		this.transitionPos.to(this.hideOffset);
-	} else {
-		this.transitionPos.to(0);
+    pos = this.hideOffset;
 	}
+
+  stylar(this.el)
+    .set(this._options.position, pos + 'px')
+  ;
 
 };
 

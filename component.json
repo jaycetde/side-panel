@@ -3,13 +3,17 @@
   "repo": "JayceTDE/side-panel",
   "description": "Basic side panel component",
   "version": "0.0.1",
-  "keywords": ["ui", "panel", "side-panel"],
+  "keywords": [
+    "ui",
+    "panel",
+    "side-panel"
+  ],
   "dependencies": {
     "component/emitter": "*",
     "JayceTDE/deeperDefaults": "*",
-    "JayceTDE/transition": "*",
     "component/event": "*",
-    "component/classes": "*"
+    "component/classes": "*",
+    "JayceTDE/stylar": "*"
   },
   "development": {},
   "license": "MIT",
