@@ -13,7 +13,7 @@
     "JayceTDE/deeperDefaults": "*",
     "component/event": "*",
     "component/classes": "*",
-    "JayceTDE/stylar": "*"
+    "DamonOehlman/stylar": "*"
   },
   "development": {},
   "license": "MIT",
